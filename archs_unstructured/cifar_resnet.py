@@ -152,6 +152,11 @@ class ResNet_IN(nn.Module):
             self.last_dim = 8
             print("Tiny_ImageNet Setting")
             print("num_classes: ", num_classes)
+        elif args.dataset in ['imagenet']:
+            self.feature_size = 224
+            self.last_dim = 16
+            print("ImageNet Setting")
+            print("num_classes: ", num_classes)
         else:
             raise ValueError("Dataset not implemented for ResNet_IN")
         self.args = args

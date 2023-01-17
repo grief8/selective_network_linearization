@@ -40,6 +40,8 @@ def get_architecture(arch: str, dataset: str, device, args) -> torch.nn.Module:
         model = wide_resnet_22_8(num_classes=10, args=args).to(device)
     elif arch == "wide_resnet_22_8" and dataset == "tiny_imagenet":
         model = wide_resnet_22_8(num_classes=200, args=args).to(device)
+    elif arch == "resnet18_in" and dataset == "imagenet":
+        model = resnet18_in(num_classes=1000, args=args).to(device)
     else:
         raise AssertionError("Your architecture is not in the list.")
     return model

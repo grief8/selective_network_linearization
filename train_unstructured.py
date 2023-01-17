@@ -12,7 +12,7 @@ import time
 import datetime
 from train_utils import AverageMeter, accuracy, init_logfile, log
 
-from utils import relu_counting, train, test
+from utils import train, test
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 parser.add_argument('dataset', type=str, choices=DATASETS)
@@ -22,7 +22,7 @@ parser.add_argument('--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--epochs', default=160, type=int, metavar='N',
                     help='number of total epochs to run')
-parser.add_argument('--batch', default=256, type=int, metavar='N',
+parser.add_argument('--batch', default=1024, type=int, metavar='N',
                     help='batchsize (default: 256)')
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     help='initial learning rate', dest='lr')
@@ -61,7 +61,9 @@ def main():
                              num_workers=args.workers, pin_memory=pin_memory)
 
     model = get_architecture(args.arch, args.dataset, device, args)
-
+    # model(torch.rand(1, 3, 224, 224).to(device))
+    # import sys
+    # sys.exit(0)
     for name, param in model.named_parameters():
         if 'alpha' in name:
             param.requires_grad = False

@@ -55,14 +55,14 @@ _TINY_STD = [0.277, 0.269, 0.282]
 
 def _mnist10(split: str) -> Dataset:
     if split == "train":
-        return datasets.MNIST("./dataset_cache", train=True, download=True, transform=transforms.Compose([
+        return datasets.MNIST("/home/lifabing/data", train=True, download=True, transform=transforms.Compose([
 #             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
             transforms.Normalize(_MNIST_MEAN, _MNIST_STDDEV)
         ]))
     
     elif split == "test":
-        return datasets.MNIST("./dataset_cache", train=False, download=True, transform=transforms.Compose([
+        return datasets.MNIST("/home/lifabing/data", train=False, download=True, transform=transforms.Compose([
 #             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
             transforms.Normalize(_MNIST_MEAN, _MNIST_STDDEV)
@@ -71,19 +71,19 @@ def _mnist10(split: str) -> Dataset:
 
 def _fashion_mnist10(split: str) -> Dataset:
     if split == "train":
-        return datasets.FashionMNIST("./dataset_cache", train=True, download=True, transform=transforms.Compose([
+        return datasets.FashionMNIST("/home/lifabing/data", train=True, download=True, transform=transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize(_FASHION_MNIST_MEAN, _FASHION_MNIST_STDDEV)
         ]))
     elif split == "test":
-        return datasets.FashionMNIST("./dataset_cache", train=False, download=True, transform=transforms.Compose([
+        return datasets.FashionMNIST("/home/lifabing/data", train=False, download=True, transform=transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize(_FASHION_MNIST_MEAN, _FASHION_MNIST_STDDEV)
         ]))
 
 def _cifar10(split: str) -> Dataset:
     if split == "train":
-        return datasets.CIFAR10("./dataset_cache", train=True, download=True, transform=transforms.Compose([
+        return datasets.CIFAR10("/home/lifabing/data", train=True, download=True, transform=transforms.Compose([
             transforms.RandomCrop(32, padding=4),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
@@ -91,14 +91,14 @@ def _cifar10(split: str) -> Dataset:
             
         ]))
     elif split == "test":
-        return datasets.CIFAR10("./dataset_cache", train=False, download=True, transform=transforms.Compose([
+        return datasets.CIFAR10("/home/lifabing/data", train=False, download=True, transform=transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize(_CIFAR10_MEAN, _CIFAR10_STDDEV)
         ]))
     
 def _cifar100(split: str) -> Dataset:
     if split == "train":
-        return datasets.CIFAR100("./dataset_cache", train=True, download=True, transform=transforms.Compose([
+        return datasets.CIFAR100("/home/lifabing/data", train=True, download=True, transform=transforms.Compose([
             transforms.RandomCrop(32, padding=4),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
@@ -106,7 +106,7 @@ def _cifar100(split: str) -> Dataset:
             
         ]))
     elif split == "test":
-        return datasets.CIFAR100("./dataset_cache", train=False, download=True, transform=transforms.Compose([
+        return datasets.CIFAR100("/home/lifabing/data", train=False, download=True, transform=transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761))
         ])) 
@@ -115,7 +115,7 @@ def _cifar100(split: str) -> Dataset:
 
 def _imagenet(split: str) -> Dataset:
     if split == "train":
-        subdir = os.path.join("path/to/imagenet", "train")
+        subdir = os.path.join("~/data/imagenet/", "train")
         transform = transforms.Compose([
             transforms.RandomResizedCrop(224),
             transforms.RandomHorizontalFlip(),
@@ -123,7 +123,7 @@ def _imagenet(split: str) -> Dataset:
             transforms.Normalize(_IMAGENET_MEAN, _IMAGENET_STDDEV)
         ])
     elif split == "test":
-        subdir = os.path.join("path/to/imagenet", "val")
+        subdir = os.path.join("~/data/imagenet/", "val")
         transform = transforms.Compose([
             transforms.Resize(256),
             transforms.CenterCrop(224),
