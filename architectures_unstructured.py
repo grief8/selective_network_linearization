@@ -3,6 +3,7 @@ import torch
 import torch.backends.cudnn as cudnn
 from archs_unstructured.cifar_resnet import resnet34_in, resnet50_in, resnet18_in, resnet9_in
 from archs_unstructured.cifar_resnet import wide_resnet_22_8
+from archs_unstructured.supermodel import cifarsupermodel50
 # from archs.cifar_resnet import wide_resnet_22_8, wide_resnet_22_8_drop02, wide_resnet_28_10_drop02, wide_resnet_28_12_drop02, wide_resnet_16_8_drop02
 from torch.nn.functional import interpolate
 
@@ -42,6 +43,10 @@ def get_architecture(arch: str, dataset: str, device, args) -> torch.nn.Module:
         model = wide_resnet_22_8(num_classes=200, args=args).to(device)
     elif arch == "resnet18_in" and dataset == "imagenet":
         model = resnet18_in(num_classes=1000, args=args).to(device)
+    elif arch == "cifarsupermodel50" and dataset == "cifar100":
+        from nni.retiarii.fixed import fixed_arch
+        with fixed_arch('/home/lifabing/projects/selective_network_linearization/archs_unstructured/78k.json'):
+            model = cifarsupermodel50().to(device)
     else:
         raise AssertionError("Your architecture is not in the list.")
     return model
