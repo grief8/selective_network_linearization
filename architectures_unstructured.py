@@ -9,7 +9,7 @@ from torch.nn.functional import interpolate
 
 
 ARCHITECTURES = ["resnet50", "lenet300", "lenet5", "vgg19", "resnet32", "resnet50", "resnet34_in", "resnet50_in", "vgg16", "lenet_5_caffe", 
-                 "resnet18_in", "wide_resnet_16_8_drop02", "resnet9_in",
+                 "resnet18_in", "wide_resnet_16_8_drop02", "resnet9_in", "cifarsupermodel50"
                  "wide_resnet_22_8_drop02", "wide_resnet_22_8", "wide_resnet_28_10", "wide_resnet_28_12", "wide_resnet_28_10_drop02", "wide_resnet_28_12_drop02"]
 def get_architecture(arch: str, dataset: str, device, args) -> torch.nn.Module:
     """ Return a neural network (with random weights)

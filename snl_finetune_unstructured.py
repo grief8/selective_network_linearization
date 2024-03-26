@@ -23,7 +23,7 @@ from utils import *
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 parser.add_argument('dataset', type=str, choices=DATASETS)
-parser.add_argument('arch', type=str, choices=ARCHITECTURES)
+parser.add_argument('arch', type=str)
 parser.add_argument('outdir', type=str, help='folder to save model and training log)')
 parser.add_argument('savedir', type=str, help='folder to load model')
 parser.add_argument('--workers', default=4, type=int, metavar='N',
